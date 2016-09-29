@@ -30,6 +30,7 @@ double compute_pi_openmp(size_t N, int threads)
     return pi * 4.0;
 }
 
+#if defined(AVX)
 double compute_pi_avx(size_t N)
 {
     double pi = 0.0;
@@ -53,7 +54,9 @@ double compute_pi_avx(size_t N)
     pi += tmp[0] + tmp[1] + tmp[2] + tmp[3];
     return pi * 4.0;
 }
+#endif
 
+#if defined(AVXUNROLL)
 double compute_pi_avx_unroll(size_t N)
 {
     double pi = 0.0;
@@ -117,3 +120,4 @@ double compute_pi_avx_unroll(size_t N)
           tmp4[0] + tmp4[1] + tmp4[2] + tmp4[3];
     return pi * 4.0;
 }
+#endif
